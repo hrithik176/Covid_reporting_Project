@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "tps00010.tsv",
+				"fileName": "ds_population_raw_covid19_hrik",
 				"container": "population"
 			},
 			"columnDelimiter": "\t",
