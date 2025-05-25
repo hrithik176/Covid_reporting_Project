@@ -1,0 +1,17 @@
+{
+	"name": "Event_trigger_ingest_population_data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/population/blobs/ds_population_raw_covid19_hrik.tsv",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
