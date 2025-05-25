@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "population_by_age.tsv",
 				"folderPath": "population",
 				"fileSystem": "raw"
 			},
