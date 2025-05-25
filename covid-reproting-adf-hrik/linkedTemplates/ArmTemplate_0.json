@@ -18,6 +18,10 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covidreportingsghrik.dfs.core.windows.net/"
+		},
+		"Event_trigger_ingest_population_data_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik"
 		}
 	},
 	"variables": {
@@ -319,6 +323,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_population_raw_covid19_hrik')]",
 				"[concat(variables('factoryId'), '/datasets/ds_population_raw_covid19')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Event_trigger_ingest_population_data')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ingest_population_data_pl",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/population/blobs/ds_population_raw_covid19_hrik.tsv",
+					"ignoreEmptyBlobs": false,
+					"scope": "[parameters('Event_trigger_ingest_population_data_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ingest_population_data_pl')]"
 			]
 		}
 	]
