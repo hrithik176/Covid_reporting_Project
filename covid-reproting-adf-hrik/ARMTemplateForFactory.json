@@ -35,32 +35,9 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "If file exists",
-						"type": "Validation",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "ds_population_raw_covid19_hrik",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"timeout": "0.12:00:00",
-							"sleep": 600,
-							"minimumSize": 5000
-						}
-					},
-					{
 						"name": "Get file Metadata",
 						"type": "GetMetadata",
-						"dependsOn": [
-							{
-								"activity": "If file exists",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
