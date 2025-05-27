@@ -47,7 +47,7 @@
 							},
 							"timeout": "0.12:00:00",
 							"sleep": 600,
-							"minimumSize": 1024
+							"minimumSize": 5000
 						}
 					},
 					{
