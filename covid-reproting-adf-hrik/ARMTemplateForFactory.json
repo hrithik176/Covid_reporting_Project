@@ -124,6 +124,7 @@
 											"storeSettings": {
 												"type": "AzureBlobStorageReadSettings",
 												"recursive": true,
+												"wildcardFileName": "ds_population_raw_covid19_hrik",
 												"enablePartitionDiscovery": false
 											},
 											"formatSettings": {
@@ -133,7 +134,8 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
+												"type": "AzureBlobFSWriteSettings",
+												"copyBehavior": "MergeFiles"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSettings",
@@ -165,39 +167,6 @@
 											"parameters": {}
 										}
 									]
-								},
-								{
-									"name": "Delete source file",
-									"type": "Delete",
-									"dependsOn": [
-										{
-											"activity": "Copy Population data_copy1",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"dataset": {
-											"referenceName": "ds_population_raw_covid19_hrik",
-											"type": "DatasetReference",
-											"parameters": {}
-										},
-										"enableLogging": false,
-										"storeSettings": {
-											"type": "AzureBlobStorageReadSettings",
-											"recursive": false,
-											"enablePartitionDiscovery": false
-										}
-									}
 								}
 							]
 						}
@@ -256,7 +225,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "ds_population_raw_covid19_hrik.tsv",
 						"container": "population"
 					},
 					"columnDelimiter": "\t",
