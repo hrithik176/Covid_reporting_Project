@@ -15,7 +15,7 @@
 			"value": "https://covidreportingsghrik.dfs.core.windows.net/"
 		},
 		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
-			"value": "https://opendata.ecdc.europa.eu"
+			"value": "https://raw.githubusercontent.com/hrithik176/Covid_reporting_Project/main/"
 		},
 		"Event_trigger_ingest_population_data_properties_typeProperties_scope": {
 			"value": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik"

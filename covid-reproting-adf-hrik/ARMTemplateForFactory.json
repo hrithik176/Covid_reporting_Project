@@ -21,7 +21,7 @@
 		},
 		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://opendata.ecdc.europa.eu"
+			"defaultValue": "https://raw.githubusercontent.com/hrithik176/Covid_reporting_Project/main/"
 		},
 		"Event_trigger_ingest_population_data_properties_typeProperties_scope": {
 			"type": "string",
@@ -99,7 +99,7 @@
 								"referenceName": "ds_cases_death_raw_csv_dl",
 								"type": "DatasetReference",
 								"parameters": {
-									"fileName": {
+									"FileName": {
 										"value": "@variables('SinkFileName')",
 										"type": "Expression"
 									}
@@ -114,7 +114,7 @@
 				"variables": {
 					"SourceRelativeURL": {
 						"type": "String",
-						"defaultValue": "covid19/raw/main/ecdc_data/hospital_admissions.csv"
+						"defaultValue": "ECDC2020_Dataset/hospital_admissions.csv"
 					},
 					"SinkFileName": {
 						"type": "String",
@@ -254,7 +254,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"fileName": {
+					"FileName": {
 						"type": "string"
 					}
 				},
@@ -264,7 +264,7 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@dataset().fileName",
+							"value": "@dataset().FileName",
 							"type": "Expression"
 						},
 						"folderPath": "ecdc",
