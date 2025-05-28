@@ -1,0 +1,17 @@
+{
+	"name": "trgr_hospital_admsn_data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2025-05-29T18:35:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
