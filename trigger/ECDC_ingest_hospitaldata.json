@@ -1,0 +1,17 @@
+{
+	"name": "ECDC_ingest_hospitaldata",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2025-05-28T12:39:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
