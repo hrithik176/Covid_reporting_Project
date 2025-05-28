@@ -1,9 +1,9 @@
 {
-	"name": "ingest_cases_death_data_pl",
+	"name": "ingest_ecdc_data_pl",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy ECDC data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -48,11 +48,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_cases_death_raw_csv_http",
+						"referenceName": "ds_ecdc_raw_csv_http",
 						"type": "DatasetReference",
 						"parameters": {
 							"RelativeURL": {
-								"value": "@variables('SourceRelativeURL')",
+								"value": "@pipeline().parameters.SourceRelativeURL",
 								"type": "Expression"
 							}
 						}
@@ -60,11 +60,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_cases_death_raw_csv_dl",
+						"referenceName": "ds_ecdc_raw_csv_dl",
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@variables('SinkFileName')",
+								"value": "@pipeline().parameters.SinkFileName",
 								"type": "Expression"
 							}
 						}
@@ -72,14 +72,12 @@
 				]
 			}
 		],
-		"variables": {
+		"parameters": {
 			"SourceRelativeURL": {
-				"type": "String",
-				"defaultValue": "ECDC2020_Dataset/hospital_admissions.csv"
+				"type": "string"
 			},
 			"SinkFileName": {
-				"type": "String",
-				"defaultValue": "hospital_admissions.csv"
+				"type": "string"
 			}
 		},
 		"annotations": []
