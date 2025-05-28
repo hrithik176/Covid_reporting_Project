@@ -27,11 +27,11 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik"
 		},
-		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+		"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
 			"type": "string",
 			"defaultValue": "ECDC2020_Dataset/hospital_admissions.csv"
 		},
-		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+		"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
 			"type": "string",
 			"defaultValue": "hospital_admissions.csv"
 		},
@@ -77,11 +77,11 @@
 					"Event_trigger_ingest_population_data_properties_typeProperties_scope": {
 						"value": "[parameters('Event_trigger_ingest_population_data_properties_typeProperties_scope')]"
 					},
-					"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
-						"value": "[parameters('trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL')]"
+					"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+						"value": "[parameters('trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL')]"
 					},
-					"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
-						"value": "[parameters('trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName')]"
+					"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+						"value": "[parameters('trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName')]"
 					}
 				}
 			},

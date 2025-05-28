@@ -27,11 +27,11 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik"
 		},
-		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+		"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
 			"type": "string",
 			"defaultValue": "ECDC2020_Dataset/hospital_admissions.csv"
 		},
-		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+		"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
 			"type": "string",
 			"defaultValue": "hospital_admissions.csv"
 		}
@@ -550,12 +550,12 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trgr_ECDC_hospital_admsn_data')]",
+			"name": "[concat(parameters('factoryName'), '/trgr_hospital_admsn_data')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -563,8 +563,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"SourceRelativeURL": "[parameters('trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL')]",
-							"SinkFileName": "[parameters('trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName')]"
+							"SourceRelativeURL": "[parameters('trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL')]",
+							"SinkFileName": "[parameters('trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName')]"
 						}
 					}
 				],
@@ -573,7 +573,7 @@
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 1,
-						"startTime": "2025-05-28T18:20:00",
+						"startTime": "2025-05-28T18:35:00",
 						"timeZone": "India Standard Time",
 						"schedule": {}
 					}
