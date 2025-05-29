@@ -1,0 +1,29 @@
+{
+	"name": "ds_ecdc_file_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ecdec_file_list_for_each_2_files.json",
+				"container": "config"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"SourceRelativeURL": {
+					"type": "string"
+				},
+				"SinkFileName": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
