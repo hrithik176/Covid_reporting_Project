@@ -21,7 +21,7 @@
 		},
 		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/hrithik176/Covid_reporting_Project/main/"
+			"defaultValue": "@{linkedService().SourceBaseURL}"
 		},
 		"ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
 			"type": "string",
@@ -94,6 +94,11 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"description": " ",
+				"parameters": {
+					"SourceBaseURL": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "HttpServer",
 				"typeProperties": {
@@ -182,10 +187,19 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "ls_http_opendata_ecdc_europa_eu",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"SourceBaseURL": {
+							"value": "@dataset().BaseURL",
+							"type": "Expression"
+						}
+					}
 				},
 				"parameters": {
 					"RelativeURL": {
+						"type": "string"
+					},
+					"BaseURL": {
 						"type": "string"
 					}
 				},
@@ -417,6 +431,10 @@
 									"RelativeURL": {
 										"value": "@pipeline().parameters.SourceRelativeURL",
 										"type": "Expression"
+									},
+									"BaseURL": {
+										"value": "@pipeline().parameters.SourceBseURL",
+										"type": "Expression"
 									}
 								}
 							}
@@ -443,6 +461,9 @@
 						"type": "string"
 					},
 					"SinkFileName": {
+						"type": "string"
+					},
+					"SourceBseURL": {
 						"type": "string"
 					}
 				},
