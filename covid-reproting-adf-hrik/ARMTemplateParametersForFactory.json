@@ -17,8 +17,20 @@
 		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/hrithik176/Covid_reporting_Project/main/"
 		},
+		"ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+			"value": "ECDC2020_Dataset/hospital_admissions.csv"
+		},
+		"ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+			"value": "hospital_admissions.csv"
+		},
 		"Event_trigger_ingest_population_data_properties_typeProperties_scope": {
 			"value": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik"
+		},
+		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+			"value": "ECDC2020_Dataset/hospital_admissions.csv"
+		},
+		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+			"value": "hospital_admissions.csv"
 		},
 		"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
 			"value": "ECDC2020_Dataset/hospital_admissions.csv"

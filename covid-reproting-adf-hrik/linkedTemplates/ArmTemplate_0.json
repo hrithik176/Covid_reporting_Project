@@ -23,9 +23,25 @@
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/hrithik176/Covid_reporting_Project/main/"
 		},
+		"ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+			"type": "string",
+			"defaultValue": "ECDC2020_Dataset/hospital_admissions.csv"
+		},
+		"ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+			"type": "string",
+			"defaultValue": "hospital_admissions.csv"
+		},
 		"Event_trigger_ingest_population_data_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f9966564-e4c2-46f7-a5bd-35288f4a3270/resourceGroups/covid_reporting_rg/providers/Microsoft.Storage/storageAccounts/covidreportingsghrik"
+		},
+		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
+			"type": "string",
+			"defaultValue": "ECDC2020_Dataset/hospital_admissions.csv"
+		},
+		"trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName": {
+			"type": "string",
+			"defaultValue": "hospital_admissions.csv"
 		},
 		"trgr_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL": {
 			"type": "string",
@@ -87,6 +103,40 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_ecdc_file_list')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ecdec_file_list_for_each_2_files.json",
+						"container": "config"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"SourceRelativeURL": {
+							"type": "string"
+						},
+						"SinkFileName": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_ecdc_raw_csv_dl')]",
@@ -520,6 +570,39 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ECDC_ingest_hospitaldata')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ingest_ecdc_data_pl",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"SourceRelativeURL": "[parameters('ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL')]",
+							"SinkFileName": "[parameters('ECDC_ingest_hospitaldata_properties_ingest_ecdc_data_pl_parameters_SinkFileName')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2025-05-28T12:39:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ingest_ecdc_data_pl')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Event_trigger_ingest_population_data')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -550,6 +633,39 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/trgr_ECDC_hospital_admsn_data')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ingest_ecdc_data_pl",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"SourceRelativeURL": "[parameters('trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SourceRelativeURL')]",
+							"SinkFileName": "[parameters('trgr_ECDC_hospital_admsn_data_properties_ingest_ecdc_data_pl_parameters_SinkFileName')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2025-05-28T18:20:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ingest_ecdc_data_pl')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/trgr_hospital_admsn_data')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -574,8 +690,7 @@
 						"frequency": "Day",
 						"interval": 1,
 						"startTime": "2025-05-28T18:35:00",
-						"timeZone": "India Standard Time",
-						"schedule": {}
+						"timeZone": "India Standard Time"
 					}
 				}
 			},
